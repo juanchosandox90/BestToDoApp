@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">BestToDoApp</string>
+    <string name="app_name">Best To Do App</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="floating_button_desc_text">floating button to add a ToDo</string>
 </resources>
