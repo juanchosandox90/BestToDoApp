@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <item
+        android:id="@+id/menu_search"
+        android:icon="@drawable/ic_search"
+        android:iconTint="@color/lightGrey"
+        android:title="@string/list_fragment_menu_search_title"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="ifRoom"
+        tools:targetApi="o" />
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/menu_sortby"
+            android:title="@string/list_fragment_menu_sorty_by_title">
+            <menu>
+                <item
+                    android:id="@+id/menu_priority_high"
+                    android:title="@string/list_fragment_menu_priority_high_title" />
+                <item
+                    android:id="@+id/menu_priority_medium"
+                    android:title="@string/list_fragment_menu_priority_medium_title" />
+                <item
+                    android:id="@+id/menu_priority_low"
+                    android:title="@string/list_fragment_menu_priority_low_title" />
+            </menu>
+        </item>
+    </group>
+    <item
+        android:id="@+id/menu_delete_all"
+        android:title="@string/list_fragment_menu_delete_all_title"
+        app:showAsAction="never" />
+</menu>

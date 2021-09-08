@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/menu_save"
+        android:icon="@drawable/ic_save"
+        android:iconTint="@color/lightGrey"
+        android:title="@string/update_fragment_save_todo_title"
+        app:showAsAction="ifRoom"
+        tools:targetApi="o" />
+
+    <item
+        android:id="@+id/menu_delete"
+        android:icon="@drawable/ic_delete"
+        android:iconTint="@color/lightGrey"
+        android:title="@string/update_fragment_delete_todo_title"
+        app:showAsAction="ifRoom"
+        tools:targetApi="o" />
+
+</menu>

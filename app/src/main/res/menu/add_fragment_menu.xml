@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:title="@string/add_fragment_menu_add_todo_title"
+        android:id="@+id/menu_add"
+        android:icon="@drawable/ic_check"
+        android:iconTint="@color/lightGrey"
+        app:showAsAction="ifRoom"
+        tools:targetApi="o" />
+
+</menu>
