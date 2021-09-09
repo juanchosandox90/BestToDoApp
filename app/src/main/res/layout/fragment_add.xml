@@ -44,7 +44,7 @@
         tools:listitem="@android:layout/simple_list_item_1" />
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
+        android:id="@+id/addToDoDescription"
         style="@style/Theme.BestToDo.Multiline"
         android:layout_width="0dp"
         android:layout_height="0dp"
