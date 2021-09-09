@@ -33,7 +33,7 @@
     <fragment
         android:id="@+id/addFragment"
         android:name="com.sandoval.besttodoapp.ui.fragments.AddFragment"
-        android:label="Add"
+        android:label="Add To Do"
         tools:layout="@layout/fragment_add">
         <action
             android:id="@+id/action_addFragment_to_listFragment"
@@ -44,7 +44,7 @@
     <fragment
         android:id="@+id/updateFragment"
         android:name="com.sandoval.besttodoapp.ui.fragments.UpdateFragment"
-        android:label="Update"
+        android:label="Update Your To Do"
         tools:layout="@layout/fragment_update">
         <action
             android:id="@+id/action_updateFragment_to_listFragment"

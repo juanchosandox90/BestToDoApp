@@ -3,10 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/custom_imput_light.xml" value="0.22037037037037038" />
+        <entry key="app/src/main/res/drawable/custom_input.xml" value="0.22037037037037038" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.225" />
+        <entry key="app/src/main/res/drawable/text_input_box_stroke_light.xml" value="0.11822916666666666" />
+        <entry key="app/src/main/res/drawable/text_input_box_stroke_night.xml" value="0.11822916666666666" />
         <entry key="app/src/main/res/drawable/toolbar_bg.xml" value="0.225" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/fragment_add.xml" value="0.2125" />
+        <entry key="app/src/main/res/layout/fragment_add.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_list.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_update.xml" value="0.1" />
         <entry key="app/src/main/res/menu-v26/list_fragment_menu.xml" value="0.2125" />
