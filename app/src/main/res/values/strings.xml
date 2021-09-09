@@ -17,4 +17,13 @@
     <!-- Update Fragment Strings-->
     <string name="update_fragment_save_todo_title">Save To Do</string>
     <string name="update_fragment_delete_todo_title">Delete</string>
+    <string name="add_fragment_todo_title_hint_edit_text">To Do Title</string>
+    <string name="add_fragment_todo_description_hint_edit_text">To Do Description</string>
+
+    <!--Spiner add array-->
+    <string-array name="priorities">
+        <item>High Priority</item>
+        <item>Medium Priority</item>
+        <item>Low Priority</item>
+    </string-array>
 </resources>
