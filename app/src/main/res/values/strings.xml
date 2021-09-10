@@ -21,6 +21,8 @@
     <string name="add_fragment_todo_description_hint_edit_text">To Do Description</string>
     <string name="list_fragment_no_data_textview">No Data!</string>
     <string name="list_fragment_no_data_img_desc">No Data IMG Description</string>
+    <string name="add_fragment_missing_fields_error">Missing fields</string>
+    <string name="add_fragment_missing_fields_message_error">All fields are mandatory</string>
 
     <!--Spiner add array-->
     <string-array name="priorities">

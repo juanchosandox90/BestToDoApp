@@ -74,8 +74,8 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
 
     fun errorDialog(activity: Activity) {
         AestheticDialog.Builder(activity, DialogStyle.RAINBOW, DialogType.ERROR)
-            .setTitle("Missing fields")
-            .setMessage("All fields are mandatory")
+            .setTitle(activity.getString(R.string.add_fragment_missing_fields_error))
+            .setMessage(activity.getString(R.string.add_fragment_missing_fields_message_error))
             .setCancelable(true)
             .setDarkMode(false)
             .setGravity(Gravity.CENTER)
