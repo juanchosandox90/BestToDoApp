@@ -1,7 +1,6 @@
 package com.sandoval.besttodoapp.ui.fragments
 
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -9,9 +8,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.sandoval.besttodoapp.R
-import com.sandoval.besttodoapp.data.models.Priority
 import com.sandoval.besttodoapp.data.models.ToDoData
 import com.sandoval.besttodoapp.data.viewmodel.ToDoViewModel
+import com.sandoval.besttodoapp.ui.viewmodel.SharedViewModel
 import kotlinx.android.synthetic.main.fragment_add.*
 
 class AddFragment : Fragment() {
@@ -19,6 +18,7 @@ class AddFragment : Fragment() {
     private lateinit var navController: NavController
     private var actionAddToList: Int? = null
     private val mTodoViewModel: ToDoViewModel by viewModels()
+    private val mSharedViewModel: SharedViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -47,16 +47,16 @@ class AddFragment : Fragment() {
         val mPriority = addToDoPriority.selectedItem.toString()
         val mDescription = addToDoDescription.text.toString()
         //Here we need to validate if this inputs are not null or empty.
-        val validation = verifyDataFromUserInput(mTitle, mDescription)
+        val validation = mSharedViewModel.verifyDataFromUserInput(mTitle, mDescription)
         if (validation) {
             val newData = ToDoData(
                 0,
                 mTitle,
-                parsePriority(mPriority),
+                mSharedViewModel.parsePriority(mPriority),
                 mDescription
             )
             // Function insertData to DB is needed to complete the process. newData obj we will be passed in this fun.
-            // As the DAO is using a suspend function, this process has to be done in a couroutine.
+            // As the DAO is using a suspend function, this process has to be done in a coroutine.
             // the best practice to do this is using a ViewModel to access a dispatcher and in that
             // way the UI wont be blocked for the user while the insertion process is done.
             mTodoViewModel.insertData(newData)
@@ -77,22 +77,4 @@ class AddFragment : Fragment() {
         }
 
     }
-
-    //TODO: This methods for best practices should be allocated on a new viwwModel class to preserve the clean code patterns.
-
-    private fun verifyDataFromUserInput(title: String, description: String): Boolean {
-        return if (TextUtils.isEmpty(title) || TextUtils.isEmpty(description)) {
-            false
-        } else !(title.isEmpty() || description.isEmpty())
-    }
-
-    private fun parsePriority(priority: String): Priority {
-        return when (priority) {
-            "High Priority" -> Priority.HIGH
-            "Medium Priority" -> Priority.MEDIUM
-            "Low Priority" -> Priority.LOW
-            else -> Priority.LOW
-        }
-    }
-
 }
