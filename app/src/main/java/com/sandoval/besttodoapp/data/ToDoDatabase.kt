@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.sandoval.besttodoapp.data.models.ToDoData
 
 //For best practices all DBs in Android, should be declared as Abstract clases.
@@ -11,6 +12,7 @@ import com.sandoval.besttodoapp.data.models.ToDoData
 //the help of the annotations. The DB will implement the interface of the DAO. As this DB Class
 //is abstract, means that the DAO access has to be done with an abstract function.
 @Database(entities = [ToDoData::class], version = 1, exportSchema = false)
+@TypeConverters(Converter::class)
 abstract class ToDoDatabase : RoomDatabase() {
 
     abstract fun toDoDao(): ToDoDao
