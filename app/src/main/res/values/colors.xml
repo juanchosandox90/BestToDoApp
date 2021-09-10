@@ -10,4 +10,7 @@
     <color name="darkerPurple">#47476b</color>
     <color name="lightGrey">#e0e0eb</color>
     <color name="darkerBlue">#2a7fc9</color>
+    <color name="redPriority">#E91E1E</color>
+    <color name="greenPriority">#00CF45</color>
+    <color name="yellowPriority">#FFC107</color>
 </resources>
