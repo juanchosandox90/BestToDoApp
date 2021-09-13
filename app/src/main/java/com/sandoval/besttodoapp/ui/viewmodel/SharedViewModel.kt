@@ -10,6 +10,7 @@ import android.widget.AdapterView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
+import androidx.navigation.findNavController
 import com.sandoval.besttodoapp.data.models.Priority
 import com.thecode.aestheticdialogs.*
 import com.sandoval.besttodoapp.R
@@ -76,10 +77,34 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
         }
     }
 
+    fun parsePriorityInt(priority: Priority): Int {
+        return when (priority) {
+            Priority.HIGH -> 0
+            Priority.MEDIUM -> 1
+            Priority.LOW -> 2
+        }
+    }
+
     fun errorDialog(activity: Activity) {
         AestheticDialog.Builder(activity, DialogStyle.RAINBOW, DialogType.ERROR)
             .setTitle(activity.getString(R.string.add_fragment_missing_fields_error))
             .setMessage(activity.getString(R.string.add_fragment_missing_fields_message_error))
+            .setCancelable(true)
+            .setDarkMode(false)
+            .setGravity(Gravity.CENTER)
+            .setAnimation(DialogAnimation.FADE)
+            .setOnClickListener(object : OnDialogClickListener {
+                override fun onClick(dialog: AestheticDialog.Builder) {
+                    dialog.dismiss()
+                }
+            })
+            .show()
+    }
+
+    fun successDialog(activity: Activity, title: String, message: String) {
+        AestheticDialog.Builder(activity, DialogStyle.RAINBOW, DialogType.SUCCESS)
+            .setTitle(title)
+            .setMessage(message)
             .setCancelable(true)
             .setDarkMode(false)
             .setGravity(Gravity.CENTER)

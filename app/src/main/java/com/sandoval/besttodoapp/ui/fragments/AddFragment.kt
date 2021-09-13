@@ -62,6 +62,11 @@ class AddFragment : Fragment() {
             // way the UI wont be blocked for the user while the insertion process is done.
             mTodoViewModel.insertData(newData)
             mSharedViewModel.hideSoftKeyboard(requireActivity())
+            mSharedViewModel.successDialog(
+                requireActivity(),
+                getString(R.string.add_fragment_dialog_title_success),
+                getString(R.string.add_fragment_dialog_message_success)
+            )
             navController.navigate(actionAddToList)
 
 
