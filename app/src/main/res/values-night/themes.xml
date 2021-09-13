@@ -28,4 +28,9 @@
         <item name="android:textColorHint">@color/text_color_hint_night</item>
         <item name="hintTextColor">@color/lightGrey</item>
     </style>
+
+
+    <style name="CustomConstraintItem" parent="Theme.AppCompat.DayNight">
+        <item name="android:background">@drawable/item_background_night</item>
+    </style>
 </resources>
