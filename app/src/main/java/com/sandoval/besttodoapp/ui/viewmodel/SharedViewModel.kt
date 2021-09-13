@@ -12,6 +12,9 @@ import androidx.lifecycle.AndroidViewModel
 import com.sandoval.besttodoapp.data.models.Priority
 import com.thecode.aestheticdialogs.*
 import com.sandoval.besttodoapp.R
+import com.sandoval.besttodoapp.utils.highPriorityString
+import com.sandoval.besttodoapp.utils.mediumPriorityString
+import com.sandoval.besttodoapp.utils.lowPriorityString
 
 //This viewModelclass will be shared with the whole project so thats why is been isolated
 class SharedViewModel(application: Application) : AndroidViewModel(application) {
@@ -65,9 +68,9 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
 
     fun parsePriority(priority: String): Priority {
         return when (priority) {
-            "High Priority" -> Priority.HIGH
-            "Medium Priority" -> Priority.MEDIUM
-            "Low Priority" -> Priority.LOW
+            highPriorityString -> Priority.HIGH
+            mediumPriorityString -> Priority.MEDIUM
+            lowPriorityString -> Priority.LOW
             else -> Priority.LOW
         }
     }

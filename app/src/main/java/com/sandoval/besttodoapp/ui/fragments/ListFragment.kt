@@ -7,13 +7,13 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
 import com.sandoval.besttodoapp.R
 import kotlinx.android.synthetic.main.fragment_list.view.*
+import com.sandoval.besttodoapp.utils.actionListToAdd
+import com.sandoval.besttodoapp.utils.actionListToUpdate
 
 
 class ListFragment : Fragment() {
 
-    lateinit var navController: NavController
-    private var actionListToAdd: Int? = null
-    private var actionListToUpdate: Int? = null
+    private lateinit var navController: NavController
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -22,16 +22,14 @@ class ListFragment : Fragment() {
         navController = findNavController()
         val view = inflater.inflate(R.layout.fragment_list, container, false)
 
-        actionListToAdd = R.id.action_listFragment_to_addFragment
-        actionListToUpdate = R.id.action_listFragment_to_updateFragment
 
         view.addToDoButton.setOnClickListener {
-            navController.navigate(actionListToAdd!!)
+            navController.navigate(actionListToAdd)
 
         }
 
         view.listLayout.setOnClickListener {
-            navController.navigate(actionListToUpdate!!)
+            navController.navigate(actionListToUpdate)
         }
 
         setHasOptionsMenu(true)

@@ -13,11 +13,11 @@ import com.sandoval.besttodoapp.data.viewmodel.ToDoViewModel
 import com.sandoval.besttodoapp.ui.viewmodel.SharedViewModel
 import kotlinx.android.synthetic.main.fragment_add.*
 import kotlinx.android.synthetic.main.fragment_add.view.*
+import com.sandoval.besttodoapp.utils.actionAddToList
 
 class AddFragment : Fragment() {
 
     private lateinit var navController: NavController
-    private var actionAddToList: Int? = null
     private val mTodoViewModel: ToDoViewModel by viewModels()
     private val mSharedViewModel: SharedViewModel by viewModels()
 
@@ -26,7 +26,6 @@ class AddFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         navController = findNavController()
-        actionAddToList = R.id.action_addFragment_to_listFragment
         val view = inflater.inflate(R.layout.fragment_add, container, false)
         view.addToDoPriority.onItemSelectedListener = mSharedViewModel.listener
         setHasOptionsMenu(true)
@@ -62,9 +61,9 @@ class AddFragment : Fragment() {
             // the best practice to do this is using a ViewModel to access a dispatcher and in that
             // way the UI wont be blocked for the user while the insertion process is done.
             mTodoViewModel.insertData(newData)
-            /*   Toast.makeText(requireContext(), "Data has been added succesfully!", Toast.LENGTH_LONG)
+            /*   Toast.makeText(requireContext(), "Data has been added successfully!", Toast.LENGTH_LONG)
                    .show()*/
-            navController.navigate(actionAddToList!!)
+            navController.navigate(actionAddToList)
 
 
         } else {
