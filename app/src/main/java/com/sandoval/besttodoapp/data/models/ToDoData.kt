@@ -2,9 +2,9 @@ package com.sandoval.besttodoapp.data.models
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.sandoval.besttodoapp.data.models.Priority
+import com.sandoval.besttodoapp.utils.databaseTable
 
-@Entity(tableName = "todo_table")
+@Entity(tableName = databaseTable)
 data class ToDoData(
     @PrimaryKey(autoGenerate = true)
     val id: Int,
