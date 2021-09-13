@@ -2,6 +2,7 @@ package com.sandoval.besttodoapp.data.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.sandoval.besttodoapp.data.ToDoDatabase
 import com.sandoval.besttodoapp.data.models.ToDoData
@@ -13,6 +14,7 @@ class ToDoViewModel(application: Application) : AndroidViewModel(application) {
 
     private val toDoDao = ToDoDatabase.getDatabase(application).toDoDao()
     private val toDoRepository: ToDoRepository = ToDoRepository(toDoDao)
+    val getAllData: LiveData<List<ToDoData>> = toDoRepository.getAllData
 
     fun insertData(toDoData: ToDoData) {
         viewModelScope.launch(Dispatchers.IO) {

@@ -1,9 +1,12 @@
 package com.sandoval.besttodoapp.data
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import com.sandoval.besttodoapp.data.models.ToDoData
+import com.sandoval.besttodoapp.utils.databaseTable
 
 //In this class we declare the queries that we will need for our app.
 //For best practices, the Dao class should be declared as an interface
@@ -14,11 +17,12 @@ import com.sandoval.besttodoapp.data.models.ToDoData
 interface ToDoDao {
 
     //Query all data
-    //We will query all the data but for this we will use a LiveData object in the future to
-    //control de states and the lifecycle of this data.
-    //TODO: Query all data with another function -> getAllData and use a LiveData component.
+    //We will query all the data but for this we will use a LiveData object to
+    //control the states and the lifecycle of this data.
+    @Query("SELECT * FROM todo_table ORDER BY id ASC")
+    fun getAllData(): LiveData<List<ToDoData>>
 
-    //Insert new data - suspend function to be used in a couroutine in the future
+    //Insert new data - suspend function to be used in a coroutine in the future
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertData(toDoData: ToDoData)
 }

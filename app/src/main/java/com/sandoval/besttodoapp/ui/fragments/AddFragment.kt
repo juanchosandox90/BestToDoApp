@@ -61,8 +61,6 @@ class AddFragment : Fragment() {
             // the best practice to do this is using a ViewModel to access a dispatcher and in that
             // way the UI wont be blocked for the user while the insertion process is done.
             mTodoViewModel.insertData(newData)
-            /*   Toast.makeText(requireContext(), "Data has been added successfully!", Toast.LENGTH_LONG)
-                   .show()*/
             navController.navigate(actionAddToList)
 
 
