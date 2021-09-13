@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.sandoval.besttodoapp.R
 import com.sandoval.besttodoapp.data.models.Priority
 import com.sandoval.besttodoapp.data.models.ToDoData
+import com.sandoval.besttodoapp.ui.fragments.ListFragmentDirections
 import kotlinx.android.synthetic.main.row_layout.view.*
 
 open class ListAdapter : RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
@@ -29,6 +31,13 @@ open class ListAdapter : RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         holder.itemView.titleText.text = dataList[position].title
         holder.itemView.descriptionText.text = dataList[position].description
+
+        holder.itemView.rowBackground.setOnClickListener {
+            val action =
+                ListFragmentDirections.actionListFragmentToUpdateFragment(dataList[position])
+            holder.itemView.findNavController().navigate(action)
+        }
+
         when (dataList[position].priority) {
             Priority.HIGH -> holder.itemView.priorityIndicator.setCardBackgroundColor(
                 ContextCompat.getColor(

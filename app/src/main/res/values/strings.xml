@@ -10,19 +10,23 @@
     <string name="list_fragment_menu_priority_medium_title">Medium Priority</string>
     <string name="list_fragment_menu_priority_low_title">Low Priority</string>
     <string name="list_fragment_menu_delete_all_title">Delete</string>
+    <string name="list_fragment_no_data_textview">No Data!</string>
+    <string name="list_fragment_no_data_img_desc">No Data IMG Description</string>
 
     <!-- Add Fragment Strings-->
     <string name="add_fragment_menu_add_todo_title">Add To Do</string>
+    <string name="add_fragment_missing_fields_error">Missing fields</string>
+    <string name="add_fragment_missing_fields_message_error">All fields are mandatory</string>
+    <string name="add_fragment_todo_title_hint_edit_text">To Do Title</string>
+    <string name="add_fragment_todo_description_hint_edit_text">To Do Description</string>
+    <string name="add_fragment_dialog_title_success">Add Success!</string>
+    <string name="add_fragment_dialog_message_success">Your To Do has been successfully Added!</string>
 
     <!-- Update Fragment Strings-->
     <string name="update_fragment_save_todo_title">Save To Do</string>
     <string name="update_fragment_delete_todo_title">Delete</string>
-    <string name="add_fragment_todo_title_hint_edit_text">To Do Title</string>
-    <string name="add_fragment_todo_description_hint_edit_text">To Do Description</string>
-    <string name="list_fragment_no_data_textview">No Data!</string>
-    <string name="list_fragment_no_data_img_desc">No Data IMG Description</string>
-    <string name="add_fragment_missing_fields_error">Missing fields</string>
-    <string name="add_fragment_missing_fields_message_error">All fields are mandatory</string>
+    <string name="update_fragment_dialog_title_success">Update Success!</string>
+    <string name="update_fragment_dialog_message_success">Your To Do has been successfully updated!</string>
 
     <!--Spiner add array-->
     <string-array name="priorities">

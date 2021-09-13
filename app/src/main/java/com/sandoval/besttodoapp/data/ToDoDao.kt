@@ -1,10 +1,7 @@
 package com.sandoval.besttodoapp.data
 
 import androidx.lifecycle.LiveData
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.sandoval.besttodoapp.data.models.ToDoData
 import com.sandoval.besttodoapp.utils.databaseTable
 
@@ -25,4 +22,7 @@ interface ToDoDao {
     //Insert new data - suspend function to be used in a coroutine in the future
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertData(toDoData: ToDoData)
+
+    @Update
+    suspend fun updateData(toDoData: ToDoData)
 }
