@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="aestheticdialogs/src/main/res/layout/dialog_rainbow.xml" value="0.215625" />
         <entry key="app/src/main/res/drawable/custom_imput_light.xml" value="0.22037037037037038" />
         <entry key="app/src/main/res/drawable/custom_input.xml" value="0.22037037037037038" />
+        <entry key="app/src/main/res/drawable/custom_input_light.xml" value="0.23177083333333334" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.225" />
         <entry key="app/src/main/res/drawable/ic_nodata.xml" value="0.20925925925925926" />
         <entry key="app/src/main/res/drawable/item_background.xml" value="0.23177083333333334" />

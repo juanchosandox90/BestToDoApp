@@ -5,6 +5,7 @@ import android.app.Application
 import android.text.TextUtils
 import android.view.Gravity
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.AdapterView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
@@ -89,6 +90,16 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
                 }
             })
             .show()
+    }
+
+    fun hideSoftKeyboard(activity: Activity) {
+        val inputMethodManager: InputMethodManager =
+            activity.getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+        if (inputMethodManager.isActive) {
+            if (activity.currentFocus != null) {
+                inputMethodManager.hideSoftInputFromWindow(activity.currentFocus!!.windowToken, 0)
+            }
+        }
     }
 
 }
