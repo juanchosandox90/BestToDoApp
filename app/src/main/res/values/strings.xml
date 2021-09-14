@@ -12,6 +12,9 @@
     <string name="list_fragment_menu_delete_all_title">Delete</string>
     <string name="list_fragment_no_data_textview">No Data!</string>
     <string name="list_fragment_no_data_img_desc">No Data IMG Description</string>
+    <string name="success_dialog_delete_all_message">All To Do Item has been successfully deleted</string>
+    <string name="list_fragment_dialog_delete_all_title">Delete All\'</string>
+    <string name="list_fragment_dialog_delete_all_message">Are you sure you want to delete all items?</string>
 
     <!-- Add Fragment Strings-->
     <string name="add_fragment_menu_add_todo_title">Add To Do</string>
@@ -27,8 +30,14 @@
     <string name="update_fragment_delete_todo_title">Delete</string>
     <string name="update_fragment_dialog_title_success">Update Success!</string>
     <string name="update_fragment_dialog_message_success">Your To Do has been successfully updated!</string>
+    <string name="success_dialog_delete_title">Delete Success</string>
+    <string name="success_dialog_delete_single_message">The To Do Item has been successfully deleted</string>
 
-    <!--Spiner add array-->
+    <!--General Dialog Strings-->
+    <string name="dialog_yes">Yes</string>
+    <string name="dialog_no">No</string>
+
+    <!--Spinner add array-->
     <string-array name="priorities">
         <item>High Priority</item>
         <item>Medium Priority</item>
