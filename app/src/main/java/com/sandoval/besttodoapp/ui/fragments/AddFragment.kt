@@ -25,9 +25,8 @@ class AddFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        navController = findNavController()
         val view = inflater.inflate(R.layout.fragment_add, container, false)
-        view.addToDoPriority.onItemSelectedListener = mSharedViewModel.listener
+        initViews(view)
         setHasOptionsMenu(true)
         return view
     }
@@ -75,5 +74,10 @@ class AddFragment : Fragment() {
             mSharedViewModel.errorDialog(requireActivity())
         }
 
+    }
+
+    private fun initViews(view: View) {
+        navController = findNavController()
+        view.addToDoPriority.onItemSelectedListener = mSharedViewModel.listener
     }
 }
