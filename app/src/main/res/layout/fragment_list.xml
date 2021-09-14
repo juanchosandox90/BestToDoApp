@@ -38,7 +38,7 @@
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/imageViewNoData"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:contentDescription="@string/list_fragment_no_data_img_desc"
@@ -52,7 +52,7 @@
         app:layout_constraintVertical_bias="0.35" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewNoData"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -61,7 +61,7 @@
         android:textColor="#AEAEBA"
         android:textSize="16sp"
         android:visibility="invisible"
-        app:layout_constraintEnd_toEndOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/imageView" />
+        app:layout_constraintEnd_toEndOf="@+id/imageViewNoData"
+        app:layout_constraintStart_toStartOf="@+id/imageViewNoData"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewNoData" />
 </androidx.constraintlayout.widget.ConstraintLayout>

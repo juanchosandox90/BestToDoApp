@@ -10,16 +10,20 @@ import android.widget.AdapterView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.findNavController
 import com.sandoval.besttodoapp.data.models.Priority
 import com.thecode.aestheticdialogs.*
 import com.sandoval.besttodoapp.R
+import com.sandoval.besttodoapp.data.models.ToDoData
 import com.sandoval.besttodoapp.utils.highPriorityString
 import com.sandoval.besttodoapp.utils.mediumPriorityString
 import com.sandoval.besttodoapp.utils.lowPriorityString
 
 //This viewModelclass will be shared with the whole project so thats why is been isolated
 class SharedViewModel(application: Application) : AndroidViewModel(application) {
+
+    val emptyDatabase: MutableLiveData<Boolean> = MutableLiveData(true)
 
     val listener: AdapterView.OnItemSelectedListener = object :
         AdapterView.OnItemSelectedListener {
@@ -143,6 +147,10 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
                 inputMethodManager.hideSoftInputFromWindow(activity.currentFocus!!.windowToken, 0)
             }
         }
+    }
+
+    fun checkIfDatabaseIsEmpty(toDoData: List<ToDoData>) {
+        emptyDatabase.value = toDoData.isEmpty()
     }
 
 }

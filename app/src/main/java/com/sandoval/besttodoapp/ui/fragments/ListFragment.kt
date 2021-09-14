@@ -15,7 +15,6 @@ import com.sandoval.besttodoapp.utils.actionListToAdd
 import com.sandoval.besttodoapp.ui.fragments.adapters.ListAdapter
 import com.sandoval.besttodoapp.ui.viewmodel.SharedViewModel
 
-
 class ListFragment : Fragment() {
 
     private lateinit var navController: NavController
@@ -45,10 +44,26 @@ class ListFragment : Fragment() {
         }
         //ViewModel will be used to observe and paint the data that is hosted in the BD. With
         //method getAllData that uses a LiveData
-        //TODO: check if the DB is empty and paint the NO DATA UI in the list fragment.
+        //Check if DB is empty with the help of the mSharedViewmodel
         mToDoViewModel.getAllData.observe(viewLifecycleOwner, { data ->
+            mSharedViewModel.checkIfDatabaseIsEmpty(data)
             listAdapter.setData(data)
         })
+
+        // If DB is empty or not, will handle the UI.
+        mSharedViewModel.emptyDatabase.observe(viewLifecycleOwner, {
+            showEmptyDatabaseView(it)
+        })
+    }
+
+    private fun showEmptyDatabaseView(emptyDatabase: Boolean) {
+        if (emptyDatabase) {
+            view?.imageViewNoData?.visibility = View.VISIBLE
+            view?.textViewNoData?.visibility = View.VISIBLE
+        } else {
+            view?.imageViewNoData?.visibility = View.INVISIBLE
+            view?.textViewNoData?.visibility = View.INVISIBLE
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
