@@ -1,3 +1,46 @@
 <resources>
-    <string name="app_name">BestToDoApp</string>
+    <string name="app_name">Best To Do App</string>
+
+    <string name="floating_button_desc_text">floating button to add a ToDo</string>
+
+    <!-- List Fragment Strings-->
+    <string name="list_fragment_menu_search_title">Search</string>
+    <string name="list_fragment_menu_sorty_by_title">Sort By</string>
+    <string name="list_fragment_menu_priority_high_title">High Priority</string>
+    <string name="list_fragment_menu_priority_medium_title">Medium Priority</string>
+    <string name="list_fragment_menu_priority_low_title">Low Priority</string>
+    <string name="list_fragment_menu_delete_all_title">Delete</string>
+    <string name="list_fragment_no_data_textview">No Data!</string>
+    <string name="list_fragment_no_data_img_desc">No Data IMG Description</string>
+    <string name="success_dialog_delete_all_message">All To Do Item has been successfully deleted</string>
+    <string name="list_fragment_dialog_delete_all_title">Delete All\'</string>
+    <string name="list_fragment_dialog_delete_all_message">Are you sure you want to delete all items?</string>
+
+    <!-- Add Fragment Strings-->
+    <string name="add_fragment_menu_add_todo_title">Add To Do</string>
+    <string name="add_fragment_missing_fields_error">Missing fields</string>
+    <string name="add_fragment_missing_fields_message_error">All fields are mandatory</string>
+    <string name="add_fragment_todo_title_hint_edit_text">To Do Title</string>
+    <string name="add_fragment_todo_description_hint_edit_text">To Do Description</string>
+    <string name="add_fragment_dialog_title_success">Add Success!</string>
+    <string name="add_fragment_dialog_message_success">Your To Do has been successfully Added!</string>
+
+    <!-- Update Fragment Strings-->
+    <string name="update_fragment_save_todo_title">Save To Do</string>
+    <string name="update_fragment_delete_todo_title">Delete</string>
+    <string name="update_fragment_dialog_title_success">Update Success!</string>
+    <string name="update_fragment_dialog_message_success">Your To Do has been successfully updated!</string>
+    <string name="success_dialog_delete_title">Delete Success</string>
+    <string name="success_dialog_delete_single_message">The To Do Item has been successfully deleted</string>
+
+    <!--General Dialog Strings-->
+    <string name="dialog_yes">Yes</string>
+    <string name="dialog_no">No</string>
+
+    <!--Spinner add array-->
+    <string-array name="priorities">
+        <item>High Priority</item>
+        <item>Medium Priority</item>
+        <item>Low Priority</item>
+    </string-array>
 </resources>
