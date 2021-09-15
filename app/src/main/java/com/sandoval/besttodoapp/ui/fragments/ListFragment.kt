@@ -5,65 +5,44 @@ import android.view.*
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavController
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.sandoval.besttodoapp.R
 import com.sandoval.besttodoapp.data.viewmodel.ToDoViewModel
-import kotlinx.android.synthetic.main.fragment_list.view.*
-import com.sandoval.besttodoapp.utils.actionListToAdd
+import com.sandoval.besttodoapp.databinding.FragmentListBinding
 import com.sandoval.besttodoapp.ui.fragments.adapters.ListAdapter
 import com.sandoval.besttodoapp.ui.viewmodel.SharedViewModel
 
 class ListFragment : Fragment() {
 
-    private lateinit var navController: NavController
     private val mToDoViewModel: ToDoViewModel by viewModels()
     private val mSharedViewModel: SharedViewModel by viewModels()
     private val listAdapter: ListAdapter by lazy {
         ListAdapter()
     }
+    private var _binding: FragmentListBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_list, container, false)
-        intRecyclerView(view)
+    ): View {
+        _binding = FragmentListBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = this
+        binding.mSharedViewModel = mSharedViewModel
+        intRecyclerView()
         setHasOptionsMenu(true)
-        return view
+        return binding.root
     }
 
-    private fun intRecyclerView(view: View) {
-        navController = findNavController()
-        val recyclerView = view.recyclerViewList
+    private fun intRecyclerView() {
+        val recyclerView = binding.recyclerViewList
         recyclerView.adapter = listAdapter
         recyclerView.layoutManager = LinearLayoutManager(requireActivity())
-        view.addToDoButton.setOnClickListener {
-            navController.navigate(actionListToAdd)
-        }
-        //ViewModel will be used to observe and paint the data that is hosted in the BD. With
-        //method getAllData that uses a LiveData
-        //Check if DB is empty with the help of the mSharedViewmodel
         mToDoViewModel.getAllData.observe(viewLifecycleOwner, { data ->
             mSharedViewModel.checkIfDatabaseIsEmpty(data)
             listAdapter.setData(data)
         })
 
-        // If DB is empty or not, will handle the UI.
-        mSharedViewModel.emptyDatabase.observe(viewLifecycleOwner, {
-            showEmptyDatabaseView(it)
-        })
-    }
-
-    private fun showEmptyDatabaseView(emptyDatabase: Boolean) {
-        if (emptyDatabase) {
-            view?.imageViewNoData?.visibility = View.VISIBLE
-            view?.textViewNoData?.visibility = View.VISIBLE
-        } else {
-            view?.imageViewNoData?.visibility = View.INVISIBLE
-            view?.textViewNoData?.visibility = View.INVISIBLE
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -87,5 +66,10 @@ class ListFragment : Fragment() {
             builder.create().show()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
