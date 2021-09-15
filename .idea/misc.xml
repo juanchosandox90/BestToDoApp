@@ -4,6 +4,9 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="aestheticdialogs/src/main/res/layout/dialog_rainbow.xml" value="0.215625" />
+        <entry key="app/src/main/res/drawable/circie_indicator_shape.xml" value="0.23177083333333334" />
+        <entry key="app/src/main/res/drawable/circie_indicator_shape_priority_low.xml" value="0.23177083333333334" />
+        <entry key="app/src/main/res/drawable/circie_indicator_shape_priority_medium.xml" value="0.23177083333333334" />
         <entry key="app/src/main/res/drawable/custom_imput_light.xml" value="0.22037037037037038" />
         <entry key="app/src/main/res/drawable/custom_input.xml" value="0.22037037037037038" />
         <entry key="app/src/main/res/drawable/custom_input_light.xml" value="0.23177083333333334" />

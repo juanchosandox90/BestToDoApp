@@ -1,67 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.fragments.UpdateFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayoutUpdate"
-        style="@style/CustomOutlineBox"
+    <data>
+
+        <variable
+            name="args"
+            type="com.sandoval.besttodoapp.ui.fragments.UpdateFragmentArgs" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="32dp"
-        android:layout_marginEnd="24dp"
-        android:hint="@string/add_fragment_todo_title_hint_edit_text"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent"
+        tools:context=".ui.fragments.UpdateFragment">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/updateToDoTitle"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/textInputLayoutUpdate"
+            style="@style/CustomOutlineBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxLength="20"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="24dp"
+            android:hint="@string/add_fragment_todo_title_hint_edit_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/updateToDoTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLength="20"
+                android:paddingStart="24dp"
+                android:paddingEnd="24dp"
+                android:text="@{args.currentItem.title}"
+                tools:text="Homework and programing" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Spinner
+            android:id="@+id/updateToDoPriority"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="10dp"
+            android:background="@android:color/transparent"
+            android:entries="@array/priorities"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:parsePriorityToInt="@{args.currentItem.priority}"
+            app:layout_constraintEnd_toEndOf="@+id/textInputLayoutUpdate"
+            app:layout_constraintStart_toStartOf="@+id/textInputLayoutUpdate"
+            app:layout_constraintTop_toBottomOf="@+id/textInputLayoutUpdate"
+            tools:listitem="@android:layout/simple_list_item_1" />
+
+        <EditText
+            android:id="@+id/updateToDoDescription"
+            style="@style/Theme.BestToDo.Multiline"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="32dp"
+            android:autofillHints=""
+            android:ems="10"
+            android:gravity="top|start"
+            android:hint="@string/add_fragment_todo_description_hint_edit_text"
+            android:inputType="textMultiLine"
             android:paddingStart="24dp"
+            android:paddingTop="16dp"
             android:paddingEnd="24dp"
-            tools:text="Homework and programing" />
+            android:text="@{args.currentItem.description}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/updateToDoPriority"
+            app:layout_constraintStart_toStartOf="@+id/updateToDoPriority"
+            app:layout_constraintTop_toBottomOf="@+id/updateToDoPriority" />
 
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <Spinner
-        android:id="@+id/updateToDoPriority"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_marginTop="10dp"
-        android:background="@android:color/transparent"
-        android:entries="@array/priorities"
-        android:paddingStart="20dp"
-        android:paddingEnd="20dp"
-        app:layout_constraintEnd_toEndOf="@+id/textInputLayoutUpdate"
-        app:layout_constraintStart_toStartOf="@+id/textInputLayoutUpdate"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayoutUpdate"
-        tools:listitem="@android:layout/simple_list_item_1" />
-
-    <EditText
-        android:id="@+id/updateToDoDescription"
-        style="@style/Theme.BestToDo.Multiline"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="32dp"
-        android:autofillHints=""
-        android:ems="10"
-        android:gravity="top|start"
-        android:hint="@string/add_fragment_todo_description_hint_edit_text"
-        android:inputType="textMultiLine"
-        android:paddingStart="24dp"
-        android:paddingTop="16dp"
-        android:paddingEnd="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/updateToDoPriority"
-        app:layout_constraintStart_toStartOf="@+id/updateToDoPriority"
-        app:layout_constraintTop_toBottomOf="@+id/updateToDoPriority" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
