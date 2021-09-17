@@ -68,4 +68,7 @@ dependencies {
     annotationProcessor 'com.android.databinding:compiler:3.2.0-alpha10'
     kapt 'com.android.databinding:compiler:3.2.0-alpha10'
     kapt 'androidx.databinding:databinding-common:7.0.2'
+
+    //RecyclerView Animator
+    implementation 'jp.wasabeef:recyclerview-animators:3.0.0'
 }

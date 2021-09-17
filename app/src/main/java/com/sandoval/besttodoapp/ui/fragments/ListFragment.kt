@@ -2,6 +2,7 @@ package com.sandoval.besttodoapp.ui.fragments
 
 import android.os.Bundle
 import android.view.*
+import android.view.animation.OvershootInterpolator
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,6 +15,9 @@ import com.sandoval.besttodoapp.databinding.FragmentListBinding
 import com.sandoval.besttodoapp.ui.fragments.adapters.ListAdapter
 import com.sandoval.besttodoapp.ui.viewmodel.SharedViewModel
 import com.sandoval.besttodoapp.utils.SwipeToDelete
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
+import jp.wasabeef.recyclerview.animators.OvershootInRightAnimator
+import kotlinx.android.synthetic.main.fragment_list.*
 
 class ListFragment : Fragment() {
 
@@ -41,6 +45,15 @@ class ListFragment : Fragment() {
         val recyclerView = binding.recyclerViewList
         recyclerView.adapter = listAdapter
         recyclerView.layoutManager = LinearLayoutManager(requireActivity())
+        recyclerView.itemAnimator = OvershootInRightAnimator().apply {
+            addDuration = 400
+        }
+        recyclerView.adapter = ScaleInAnimationAdapter(listAdapter).apply {
+            setFirstOnly(false)
+            setDuration(400)
+            setInterpolator(OvershootInterpolator(0.5f))
+        }
+
         mToDoViewModel.getAllData.observe(viewLifecycleOwner, { data ->
             mSharedViewModel.checkIfDatabaseIsEmpty(data)
             listAdapter.setData(data)

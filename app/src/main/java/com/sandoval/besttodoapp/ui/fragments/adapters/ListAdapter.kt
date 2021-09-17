@@ -3,9 +3,11 @@ package com.sandoval.besttodoapp.ui.fragments.adapters
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.sandoval.besttodoapp.data.models.ToDoData
 import com.sandoval.besttodoapp.databinding.RowLayoutBinding
+import com.sandoval.besttodoapp.ui.utils.ToDoDiffUtil
 
 open class ListAdapter : RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
 
@@ -42,7 +44,9 @@ open class ListAdapter : RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
 
     @SuppressLint("NotifyDataSetChanged")
     fun setData(toDoData: List<ToDoData>) {
+        val toDoDiffUtil = ToDoDiffUtil(dataList, toDoData)
+        val toDoDiffUtilResult = DiffUtil.calculateDiff(toDoDiffUtil)
         this.dataList = toDoData
-        notifyDataSetChanged()
+        toDoDiffUtilResult.dispatchUpdatesTo(this)
     }
 }
