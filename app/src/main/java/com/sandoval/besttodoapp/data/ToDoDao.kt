@@ -23,12 +23,19 @@ interface ToDoDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insertData(toDoData: ToDoData)
 
+    //Update data from list fragment item.
     @Update
     suspend fun updateData(toDoData: ToDoData)
 
+    //Delete single item inside the update fragment
     @Delete
     suspend fun deleteSingleItem(toDoData: ToDoData)
 
+    //Delete all Data items from the list fragment
     @Query("DELETE FROM todo_table")
     suspend fun deleteAllItems()
+
+    //Search Data item from the Database
+    @Query("SELECT * FROM todo_table WHERE title LIKE :searchQuery")
+    fun searchToDoDatabase(searchQuery: String): LiveData<List<ToDoData>>
 }
