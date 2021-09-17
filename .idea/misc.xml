@@ -24,7 +24,7 @@
         <entry key="app/src/main/res/drawable/text_input_box_stroke_light.xml" value="0.11822916666666666" />
         <entry key="app/src/main/res/drawable/text_input_box_stroke_night.xml" value="0.11822916666666666" />
         <entry key="app/src/main/res/drawable/toolbar_bg.xml" value="0.225" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="app/src/main/res/layout/custom_view_inflation_snackbar.xml" value="0.215625" />
         <entry key="app/src/main/res/layout/fragment_add.xml" value="0.9" />
         <entry key="app/src/main/res/layout/fragment_list.xml" value="0.25" />
