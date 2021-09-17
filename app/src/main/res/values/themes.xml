@@ -16,7 +16,7 @@
 
     <style name="Theme.BestToDo.Multiline" parent="Widget.AppCompat.EditText">
         <item name="android:background">@drawable/custom_input_light</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="strokeWidth">1dp</item>
         <item name="hintTextColor">@color/darkerPurple</item>
         <item name="strokeColor">@color/darkerPurple</item>
