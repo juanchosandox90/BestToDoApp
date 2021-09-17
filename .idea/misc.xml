@@ -18,10 +18,13 @@
         <entry key="app/src/main/res/drawable/text_input_box_stroke_night.xml" value="0.11822916666666666" />
         <entry key="app/src/main/res/drawable/toolbar_bg.xml" value="0.225" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/custom_view_inflation_snackbar.xml" value="0.215625" />
         <entry key="app/src/main/res/layout/fragment_add.xml" value="0.9" />
         <entry key="app/src/main/res/layout/fragment_list.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_update.xml" value="0.18" />
         <entry key="app/src/main/res/layout/row_layout.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/view_simple_snackbar.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/view_snackbar_simple.xml" value="0.284375" />
         <entry key="app/src/main/res/menu-v26/list_fragment_menu.xml" value="0.2125" />
         <entry key="app/src/main/res/menu/add_fragment_menu.xml" value="0.2125" />
         <entry key="app/src/main/res/menu/list_fragment_menu.xml" value="0.2125" />

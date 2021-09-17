@@ -11,7 +11,6 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.navigation.findNavController
 import com.sandoval.besttodoapp.data.models.Priority
 import com.thecode.aestheticdialogs.*
 import com.sandoval.besttodoapp.R
@@ -113,6 +112,7 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
             .setMessage(activity.getString(R.string.add_fragment_missing_fields_message_error))
             .setCancelable(true)
             .setDarkMode(false)
+            .setDuration(2000)
             .setGravity(Gravity.CENTER)
             .setAnimation(DialogAnimation.FADE)
             .setOnClickListener(object : OnDialogClickListener {
@@ -129,6 +129,7 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
             .setMessage(message)
             .setCancelable(true)
             .setDarkMode(false)
+            .setDuration(2000)
             .setGravity(Gravity.CENTER)
             .setAnimation(DialogAnimation.FADE)
             .setOnClickListener(object : OnDialogClickListener {
@@ -152,5 +153,4 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
     fun checkIfDatabaseIsEmpty(toDoData: List<ToDoData>) {
         emptyDatabase.value = toDoData.isEmpty()
     }
-
 }
