@@ -37,12 +37,6 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
                     (parent?.getChildAt(0) as? TextView)?.setTextColor(
                         ContextCompat.getColor(
                             application,
-                            R.color.white
-                        )
-                    )
-                    (parent?.getChildAt(0) as? TextView)?.setBackgroundColor(
-                        ContextCompat.getColor(
-                            application,
                             R.color.redPriority
                         )
                     )
@@ -51,24 +45,12 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
                     (parent?.getChildAt(0) as? TextView)?.setTextColor(
                         ContextCompat.getColor(
                             application,
-                            R.color.white
-                        )
-                    )
-                    (parent?.getChildAt(0) as? TextView)?.setBackgroundColor(
-                        ContextCompat.getColor(
-                            application,
                             R.color.yellowPriority
                         )
                     )
                 }
                 2 -> {
                     (parent?.getChildAt(0) as? TextView)?.setTextColor(
-                        ContextCompat.getColor(
-                            application,
-                            R.color.white
-                        )
-                    )
-                    (parent?.getChildAt(0) as? TextView)?.setBackgroundColor(
                         ContextCompat.getColor(
                             application,
                             R.color.greenPriority

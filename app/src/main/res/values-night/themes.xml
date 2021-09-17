@@ -34,4 +34,8 @@
     <style name="CustomConstraintItem" parent="Theme.AppCompat.DayNight">
         <item name="android:background">@drawable/item_background_night</item>
     </style>
+
+    <style name="SpinnerTheme" parent="Widget.AppCompat.Spinner.DropDown">
+        <item name="android:background">@drawable/spinner_rect_night</item>
+    </style>
 </resources>

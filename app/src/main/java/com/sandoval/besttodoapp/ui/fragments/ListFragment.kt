@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.*
 import android.view.animation.OvershootInterpolator
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.ItemTouchHelper
@@ -19,7 +20,7 @@ import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import jp.wasabeef.recyclerview.animators.OvershootInRightAnimator
 import kotlinx.android.synthetic.main.fragment_list.*
 
-class ListFragment : Fragment() {
+class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private val mToDoViewModel: ToDoViewModel by viewModels()
     private val mSharedViewModel: SharedViewModel by viewModels()
@@ -84,6 +85,14 @@ class ListFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.list_fragment_menu, menu)
+        initSearchViewOption(menu)
+    }
+
+    private fun initSearchViewOption(menu: Menu) {
+        val search = menu.findItem(R.id.menu_search)
+        val searchView = search.actionView as? SearchView
+        searchView?.isSubmitButtonEnabled = true
+        searchView?.setOnQueryTextListener(this)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -109,5 +118,30 @@ class ListFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        if (query != null) {
+            searchThroughDatabase(query)
+            mSharedViewModel.hideSoftKeyboard(requireActivity())
+        }
+        return true
+    }
+
+    override fun onQueryTextChange(query: String?): Boolean {
+        if (query != null) {
+            searchThroughDatabase(query)
+        }
+        return true
+    }
+
+    private fun searchThroughDatabase(query: String) {
+        var searchQuery = query
+        searchQuery = "%$searchQuery%"
+        mToDoViewModel.searchDatabase(searchQuery).observe(this, { list ->
+            list.let {
+                listAdapter.setData(it)
+            }
+        })
     }
 }

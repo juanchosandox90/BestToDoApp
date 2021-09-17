@@ -67,4 +67,8 @@ class ToDoViewModel(application: Application) : AndroidViewModel(application) {
         )
         customSnackbar?.show()
     }
+
+    fun searchDatabase(searchQuery: String): LiveData<List<ToDoData>> {
+        return toDoRepository.searchToDoDatabase(searchQuery)
+    }
 }
