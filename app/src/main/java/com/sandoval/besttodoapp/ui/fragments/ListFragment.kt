@@ -2,90 +2,169 @@ package com.sandoval.besttodoapp.ui.fragments
 
 import android.os.Bundle
 import android.view.*
+import android.view.animation.OvershootInterpolator
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavController
-import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.*
 import com.sandoval.besttodoapp.R
 import com.sandoval.besttodoapp.data.viewmodel.ToDoViewModel
-import kotlinx.android.synthetic.main.fragment_list.view.*
-import com.sandoval.besttodoapp.utils.actionListToAdd
+import com.sandoval.besttodoapp.databinding.FragmentListBinding
 import com.sandoval.besttodoapp.ui.fragments.adapters.ListAdapter
 import com.sandoval.besttodoapp.ui.viewmodel.SharedViewModel
+import com.sandoval.besttodoapp.utils.SwipeToDelete
+import com.sandoval.besttodoapp.utils.observeOnce
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
+import jp.wasabeef.recyclerview.animators.OvershootInRightAnimator
 
-class ListFragment : Fragment() {
+class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
-    private lateinit var navController: NavController
     private val mToDoViewModel: ToDoViewModel by viewModels()
     private val mSharedViewModel: SharedViewModel by viewModels()
     private val listAdapter: ListAdapter by lazy {
         ListAdapter()
     }
+    private var _binding: FragmentListBinding? = null
+    private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_list, container, false)
-        intRecyclerView(view)
+    ): View {
+        _binding = FragmentListBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = this
+        binding.mSharedViewModel = mSharedViewModel
+        mSharedViewModel.hideSoftKeyboard(requireActivity())
+        intRecyclerView()
         setHasOptionsMenu(true)
-        return view
+        return binding.root
     }
 
-    private fun intRecyclerView(view: View) {
-        navController = findNavController()
-        val recyclerView = view.recyclerViewList
+    private fun intRecyclerView() {
+        val recyclerView = binding.recyclerViewList
         recyclerView.adapter = listAdapter
-        recyclerView.layoutManager = LinearLayoutManager(requireActivity())
-        view.addToDoButton.setOnClickListener {
-            navController.navigate(actionListToAdd)
+        recyclerView.layoutManager =
+            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+        recyclerView.itemAnimator = OvershootInRightAnimator().apply {
+            addDuration = 400
         }
-        //ViewModel will be used to observe and paint the data that is hosted in the BD. With
-        //method getAllData that uses a LiveData
-        //Check if DB is empty with the help of the mSharedViewmodel
+        recyclerView.adapter = ScaleInAnimationAdapter(listAdapter).apply {
+            setFirstOnly(false)
+            setDuration(400)
+            setInterpolator(OvershootInterpolator(0.5f))
+        }
+
         mToDoViewModel.getAllData.observe(viewLifecycleOwner, { data ->
             mSharedViewModel.checkIfDatabaseIsEmpty(data)
             listAdapter.setData(data)
         })
-
-        // If DB is empty or not, will handle the UI.
-        mSharedViewModel.emptyDatabase.observe(viewLifecycleOwner, {
-            showEmptyDatabaseView(it)
-        })
+        swipeToDeleteItem(recyclerView)
     }
 
-    private fun showEmptyDatabaseView(emptyDatabase: Boolean) {
-        if (emptyDatabase) {
-            view?.imageViewNoData?.visibility = View.VISIBLE
-            view?.textViewNoData?.visibility = View.VISIBLE
-        } else {
-            view?.imageViewNoData?.visibility = View.INVISIBLE
-            view?.textViewNoData?.visibility = View.INVISIBLE
+    //Function to delete an item using the swipe gesture
+    private fun swipeToDeleteItem(recyclerView: RecyclerView) {
+        //Overriding the onSwiped makes that the method onSwiped from the class SwipeToDelete
+        //can be erased.
+        val swipeToDeleteCallback = object : SwipeToDelete() {
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val deletedItem = listAdapter.dataList[viewHolder.adapterPosition]
+                mToDoViewModel.deleteSingleItem(deletedItem)
+                mToDoViewModel.restoreDeleteItem(
+                    viewHolder.itemView,
+                    deletedItem,
+                    viewHolder.adapterPosition,
+                    listAdapter
+                )
+            }
         }
+        val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
+        itemTouchHelper.attachToRecyclerView(recyclerView)
     }
+
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.list_fragment_menu, menu)
+        initSearchViewOption(menu)
+    }
+
+    private fun initSearchViewOption(menu: Menu) {
+        val search = menu.findItem(R.id.menu_search)
+        val searchView = search.actionView as? SearchView
+        searchView?.isSubmitButtonEnabled = true
+        searchView?.setOnQueryTextListener(this)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.menu_delete_all) {
-            val builder = AlertDialog.Builder(requireContext())
-            builder.setTitle(getString(R.string.list_fragment_dialog_delete_all_title))
-            builder.setMessage(getString(R.string.list_fragment_dialog_delete_all_message))
-            builder.setPositiveButton(getString(R.string.dialog_yes)) { _, _ ->
-                mToDoViewModel.deleteAllItems()
-                mSharedViewModel.successDialog(
-                    requireActivity(),
-                    getString(R.string.success_dialog_delete_title),
-                    getString(R.string.success_dialog_delete_all_message)
-                )
+        when (item.itemId) {
+            R.id.menu_delete_all -> {
+                val builder = AlertDialog.Builder(requireActivity())
+                builder.setTitle(getString(R.string.list_fragment_dialog_delete_all_title))
+                builder.setMessage(getString(R.string.list_fragment_dialog_delete_all_message))
+                builder.setPositiveButton(R.string.dialog_yes) { _, _ ->
+                    mToDoViewModel.deleteAllItems()
+                    mSharedViewModel.successDialog(
+                        requireActivity(),
+                        (R.string.success_dialog_delete_title).toString(),
+                        (R.string.success_dialog_delete_all_message).toString()
+                    )
+                }
+                builder.setNegativeButton(R.string.dialog_no) { _, _ -> }
+                builder.create().show()
             }
-            builder.setNegativeButton(getString(R.string.dialog_no)) { _, _ -> }
-            builder.create().show()
+            R.id.menu_priority_high -> sortByHighPriority()
+            R.id.menu_priority_medium -> sortByMediumPriority()
+            R.id.menu_priority_low -> sortByLowPriority()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun sortByLowPriority() {
+        mToDoViewModel.sortByLowPriority.observe(viewLifecycleOwner, {
+            listAdapter.setData(it)
+        })
+    }
+
+    private fun sortByMediumPriority() {
+        mToDoViewModel.sortByMediumPriority.observe(viewLifecycleOwner, {
+            listAdapter.setData(it)
+        })
+    }
+
+    private fun sortByHighPriority() {
+        mToDoViewModel.sortByHighPriority.observe(viewLifecycleOwner, {
+            listAdapter.setData(it)
+        })
+    }
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    override fun onQueryTextSubmit(query: String?): Boolean {
+        if (query != null) {
+            searchThroughDatabase(query)
+            mSharedViewModel.hideSoftKeyboard(requireActivity())
+        }
+        return true
+    }
+
+    override fun onQueryTextChange(query: String?): Boolean {
+        if (query != null) {
+            searchThroughDatabase(query)
+        }
+        return true
+    }
+
+    private fun searchThroughDatabase(query: String) {
+        var searchQuery = query
+        searchQuery = "%$searchQuery%"
+        mToDoViewModel.searchDatabase(searchQuery).observeOnce(viewLifecycleOwner, { list ->
+            list.let {
+                listAdapter.setData(it)
+            }
+        })
     }
 }

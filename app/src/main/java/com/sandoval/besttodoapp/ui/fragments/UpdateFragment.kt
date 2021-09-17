@@ -2,7 +2,6 @@ package com.sandoval.besttodoapp.ui.fragments
 
 import android.os.Bundle
 import android.view.*
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -12,10 +11,9 @@ import androidx.navigation.fragment.navArgs
 import com.sandoval.besttodoapp.R
 import com.sandoval.besttodoapp.data.models.ToDoData
 import com.sandoval.besttodoapp.data.viewmodel.ToDoViewModel
+import com.sandoval.besttodoapp.databinding.FragmentUpdateBinding
 import com.sandoval.besttodoapp.ui.viewmodel.SharedViewModel
 import com.sandoval.besttodoapp.utils.actionUpdateToList
-import kotlinx.android.synthetic.main.fragment_update.*
-import kotlinx.android.synthetic.main.fragment_update.view.*
 
 class UpdateFragment : Fragment() {
 
@@ -26,14 +24,21 @@ class UpdateFragment : Fragment() {
     private val mTodoViewModel: ToDoViewModel by viewModels()
     private lateinit var navController: NavController
 
+    private var _binding: FragmentUpdateBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        val view = inflater.inflate(R.layout.fragment_update, container, false)
-        initViews(view)
+    ): View {
+        _binding = FragmentUpdateBinding.inflate(inflater, container, false)
+        binding.args = args
+        binding.updateToDoPriority.onItemSelectedListener = mSharedViewModel.listener
+        mSharedViewModel.hideSoftKeyboard(requireActivity())
+        navController = findNavController()
+        //initViews(view)
         setHasOptionsMenu(true)
-        return view
+        return binding.root
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -41,10 +46,9 @@ class UpdateFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.menu_save) {
-            updateToDoItem()
-        } else if (item.itemId == R.id.menu_delete) {
-            deleteSingleItem()
+        when (item.itemId) {
+            R.id.menu_save -> updateToDoItem()
+            R.id.menu_delete -> deleteSingleItem()
         }
         return super.onOptionsItemSelected(item)
     }
@@ -72,9 +76,9 @@ class UpdateFragment : Fragment() {
     }
 
     private fun updateToDoItem() {
-        val mTitle = updateToDoTitle.text.toString()
-        val mPriority = updateToDoPriority.selectedItem.toString()
-        val mDescription = updateToDoDescription.text.toString()
+        val mTitle = binding.updateToDoTitle.text.toString()
+        val mPriority = binding.updateToDoPriority.selectedItem.toString()
+        val mDescription = binding.updateToDoDescription.text.toString()
         //Here we need to validate if this inputs are not null or empty.
         val validation = mSharedViewModel.verifyDataFromUserInput(mTitle, mDescription)
         if (validation) {
@@ -108,12 +112,8 @@ class UpdateFragment : Fragment() {
         }
     }
 
-    //Init the views in this function.
-    private fun initViews(view: View) {
-        navController = findNavController()
-        view.updateToDoTitle.setText(args.currentItem.title)
-        view.updateToDoDescription.setText(args.currentItem.description)
-        view.updateToDoPriority.setSelection(mSharedViewModel.parsePriorityInt(args.currentItem.priority))
-        view.updateToDoPriority.onItemSelectedListener = mSharedViewModel.listener
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

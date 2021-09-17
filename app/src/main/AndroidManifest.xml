@@ -5,15 +5,16 @@
 
     <application
         android:allowBackup="true"
-        tools:replace="android:theme"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.BestToDoApp">
+        android:theme="@style/Theme.BestToDoApp"
+        tools:replace="android:theme">
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:windowSoftInputMode="adjustPan|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

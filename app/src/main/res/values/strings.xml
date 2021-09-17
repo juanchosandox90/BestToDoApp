@@ -13,7 +13,7 @@
     <string name="list_fragment_no_data_textview">No Data!</string>
     <string name="list_fragment_no_data_img_desc">No Data IMG Description</string>
     <string name="success_dialog_delete_all_message">All To Do Item has been successfully deleted</string>
-    <string name="list_fragment_dialog_delete_all_title">Delete All\'</string>
+    <string name="list_fragment_dialog_delete_all_title">Delete All</string>
     <string name="list_fragment_dialog_delete_all_message">Are you sure you want to delete all items?</string>
 
     <!-- Add Fragment Strings-->

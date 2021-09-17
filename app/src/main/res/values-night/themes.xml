@@ -19,7 +19,7 @@
         <item name="android:background">@drawable/custom_input</item>
         <item name="android:textColor">@color/darkerPurple</item>
         <item name="hintTextColor">@color/lightGrey</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">18sp</item>
         <item name="android:textColorHint">@color/lightGrey</item>
         <item name="android:radius">6dp</item>
     </style>
@@ -33,5 +33,9 @@
 
     <style name="CustomConstraintItem" parent="Theme.AppCompat.DayNight">
         <item name="android:background">@drawable/item_background_night</item>
+    </style>
+
+    <style name="SpinnerTheme" parent="Widget.AppCompat.Spinner.DropDown">
+        <item name="android:background">@drawable/spinner_rect_night</item>
     </style>
 </resources>

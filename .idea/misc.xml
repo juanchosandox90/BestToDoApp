@@ -4,21 +4,34 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="aestheticdialogs/src/main/res/layout/dialog_rainbow.xml" value="0.215625" />
+        <entry key="app/src/main/res/drawable/circie_indicator_shape.xml" value="0.23177083333333334" />
+        <entry key="app/src/main/res/drawable/circie_indicator_shape_priority_low.xml" value="0.23177083333333334" />
+        <entry key="app/src/main/res/drawable/circie_indicator_shape_priority_medium.xml" value="0.23177083333333334" />
         <entry key="app/src/main/res/drawable/custom_imput_light.xml" value="0.22037037037037038" />
         <entry key="app/src/main/res/drawable/custom_input.xml" value="0.22037037037037038" />
         <entry key="app/src/main/res/drawable/custom_input_light.xml" value="0.23177083333333334" />
+        <entry key="app/src/main/res/drawable/custom_spinner_background.xml" value="0.23177083333333334" />
+        <entry key="app/src/main/res/drawable/custom_spinner_background_night.xml" value="0.22314814814814815" />
+        <entry key="app/src/main/res/drawable/custom_spinner_background_test.xml" value="0.22314814814814815" />
         <entry key="app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.225" />
+        <entry key="app/src/main/res/drawable/ic_dropdown.xml" value="0.22314814814814815" />
+        <entry key="app/src/main/res/drawable/ic_dropdown_night.xml" value="0.22314814814814815" />
         <entry key="app/src/main/res/drawable/ic_nodata.xml" value="0.20925925925925926" />
         <entry key="app/src/main/res/drawable/item_background.xml" value="0.23177083333333334" />
         <entry key="app/src/main/res/drawable/item_background_night.xml" value="0.23177083333333334" />
+        <entry key="app/src/main/res/drawable/spinner_rect_light.xml" value="0.22314814814814815" />
+        <entry key="app/src/main/res/drawable/spinner_rect_night.xml" value="0.22314814814814815" />
         <entry key="app/src/main/res/drawable/text_input_box_stroke_light.xml" value="0.11822916666666666" />
         <entry key="app/src/main/res/drawable/text_input_box_stroke_night.xml" value="0.11822916666666666" />
         <entry key="app/src/main/res/drawable/toolbar_bg.xml" value="0.225" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/custom_view_inflation_snackbar.xml" value="0.215625" />
         <entry key="app/src/main/res/layout/fragment_add.xml" value="0.9" />
         <entry key="app/src/main/res/layout/fragment_list.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_update.xml" value="0.18" />
         <entry key="app/src/main/res/layout/row_layout.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/view_simple_snackbar.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/view_snackbar_simple.xml" value="0.284375" />
         <entry key="app/src/main/res/menu-v26/list_fragment_menu.xml" value="0.2125" />
         <entry key="app/src/main/res/menu/add_fragment_menu.xml" value="0.2125" />
         <entry key="app/src/main/res/menu/list_fragment_menu.xml" value="0.2125" />

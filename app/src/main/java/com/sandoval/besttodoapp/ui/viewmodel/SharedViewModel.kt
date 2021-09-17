@@ -11,7 +11,6 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.navigation.findNavController
 import com.sandoval.besttodoapp.data.models.Priority
 import com.thecode.aestheticdialogs.*
 import com.sandoval.besttodoapp.R
@@ -38,12 +37,6 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
                     (parent?.getChildAt(0) as? TextView)?.setTextColor(
                         ContextCompat.getColor(
                             application,
-                            R.color.white
-                        )
-                    )
-                    (parent?.getChildAt(0) as? TextView)?.setBackgroundColor(
-                        ContextCompat.getColor(
-                            application,
                             R.color.redPriority
                         )
                     )
@@ -52,24 +45,12 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
                     (parent?.getChildAt(0) as? TextView)?.setTextColor(
                         ContextCompat.getColor(
                             application,
-                            R.color.white
-                        )
-                    )
-                    (parent?.getChildAt(0) as? TextView)?.setBackgroundColor(
-                        ContextCompat.getColor(
-                            application,
                             R.color.yellowPriority
                         )
                     )
                 }
                 2 -> {
                     (parent?.getChildAt(0) as? TextView)?.setTextColor(
-                        ContextCompat.getColor(
-                            application,
-                            R.color.white
-                        )
-                    )
-                    (parent?.getChildAt(0) as? TextView)?.setBackgroundColor(
                         ContextCompat.getColor(
                             application,
                             R.color.greenPriority
@@ -85,9 +66,7 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
     }
 
     fun verifyDataFromUserInput(title: String, description: String): Boolean {
-        return if (TextUtils.isEmpty(title) || TextUtils.isEmpty(description)) {
-            false
-        } else !(title.isEmpty() || description.isEmpty())
+        return !(title.isEmpty() || description.isEmpty())
     }
 
     fun parsePriority(priority: String): Priority {
@@ -113,6 +92,7 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
             .setMessage(activity.getString(R.string.add_fragment_missing_fields_message_error))
             .setCancelable(true)
             .setDarkMode(false)
+            .setDuration(2000)
             .setGravity(Gravity.CENTER)
             .setAnimation(DialogAnimation.FADE)
             .setOnClickListener(object : OnDialogClickListener {
@@ -129,6 +109,7 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
             .setMessage(message)
             .setCancelable(true)
             .setDarkMode(false)
+            .setDuration(2000)
             .setGravity(Gravity.CENTER)
             .setAnimation(DialogAnimation.FADE)
             .setOnClickListener(object : OnDialogClickListener {
@@ -152,5 +133,4 @@ class SharedViewModel(application: Application) : AndroidViewModel(application) 
     fun checkIfDatabaseIsEmpty(toDoData: List<ToDoData>) {
         emptyDatabase.value = toDoData.isEmpty()
     }
-
 }
