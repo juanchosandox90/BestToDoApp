@@ -7,9 +7,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.recyclerview.widget.ItemTouchHelper
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.*
 import com.sandoval.besttodoapp.R
 import com.sandoval.besttodoapp.data.viewmodel.ToDoViewModel
 import com.sandoval.besttodoapp.databinding.FragmentListBinding
@@ -18,7 +16,6 @@ import com.sandoval.besttodoapp.ui.viewmodel.SharedViewModel
 import com.sandoval.besttodoapp.utils.SwipeToDelete
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import jp.wasabeef.recyclerview.animators.OvershootInRightAnimator
-import kotlinx.android.synthetic.main.fragment_list.*
 
 class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
@@ -45,7 +42,8 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun intRecyclerView() {
         val recyclerView = binding.recyclerViewList
         recyclerView.adapter = listAdapter
-        recyclerView.layoutManager = LinearLayoutManager(requireActivity())
+        recyclerView.layoutManager =
+            StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         recyclerView.itemAnimator = OvershootInRightAnimator().apply {
             addDuration = 400
         }
@@ -96,22 +94,45 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.menu_delete_all) {
-            val builder = AlertDialog.Builder(requireActivity())
-            builder.setTitle(getString(R.string.list_fragment_dialog_delete_all_title))
-            builder.setMessage(getString(R.string.list_fragment_dialog_delete_all_message))
-            builder.setPositiveButton(R.string.dialog_yes) { _, _ ->
-                mToDoViewModel.deleteAllItems()
-                mSharedViewModel.successDialog(
-                    requireActivity(),
-                    (R.string.success_dialog_delete_title).toString(),
-                    (R.string.success_dialog_delete_all_message).toString()
-                )
+        when (item.itemId) {
+            R.id.menu_delete_all -> {
+                val builder = AlertDialog.Builder(requireActivity())
+                builder.setTitle(getString(R.string.list_fragment_dialog_delete_all_title))
+                builder.setMessage(getString(R.string.list_fragment_dialog_delete_all_message))
+                builder.setPositiveButton(R.string.dialog_yes) { _, _ ->
+                    mToDoViewModel.deleteAllItems()
+                    mSharedViewModel.successDialog(
+                        requireActivity(),
+                        (R.string.success_dialog_delete_title).toString(),
+                        (R.string.success_dialog_delete_all_message).toString()
+                    )
+                }
+                builder.setNegativeButton(R.string.dialog_no) { _, _ -> }
+                builder.create().show()
             }
-            builder.setNegativeButton(R.string.dialog_no) { _, _ -> }
-            builder.create().show()
+            R.id.menu_priority_high -> sortByHighPriority()
+            R.id.menu_priority_medium -> sortByMediumPriority()
+            R.id.menu_priority_low -> sortByLowPriority()
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun sortByLowPriority() {
+        mToDoViewModel.sortByLowPriority.observe(this, {
+            listAdapter.setData(it)
+        })
+    }
+
+    private fun sortByMediumPriority() {
+        mToDoViewModel.sortByMediumPriority.observe(this, {
+            listAdapter.setData(it)
+        })
+    }
+
+    private fun sortByHighPriority() {
+        mToDoViewModel.sortByHighPriority.observe(this, {
+            listAdapter.setData(it)
+        })
     }
 
 
