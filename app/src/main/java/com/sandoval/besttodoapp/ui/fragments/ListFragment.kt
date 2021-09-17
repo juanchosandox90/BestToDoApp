@@ -14,6 +14,7 @@ import com.sandoval.besttodoapp.databinding.FragmentListBinding
 import com.sandoval.besttodoapp.ui.fragments.adapters.ListAdapter
 import com.sandoval.besttodoapp.ui.viewmodel.SharedViewModel
 import com.sandoval.besttodoapp.utils.SwipeToDelete
+import com.sandoval.besttodoapp.utils.observeOnce
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import jp.wasabeef.recyclerview.animators.OvershootInRightAnimator
 
@@ -34,6 +35,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
         _binding = FragmentListBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
         binding.mSharedViewModel = mSharedViewModel
+        mSharedViewModel.hideSoftKeyboard(requireActivity())
         intRecyclerView()
         setHasOptionsMenu(true)
         return binding.root
@@ -118,19 +120,19 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun sortByLowPriority() {
-        mToDoViewModel.sortByLowPriority.observe(this, {
+        mToDoViewModel.sortByLowPriority.observe(viewLifecycleOwner, {
             listAdapter.setData(it)
         })
     }
 
     private fun sortByMediumPriority() {
-        mToDoViewModel.sortByMediumPriority.observe(this, {
+        mToDoViewModel.sortByMediumPriority.observe(viewLifecycleOwner, {
             listAdapter.setData(it)
         })
     }
 
     private fun sortByHighPriority() {
-        mToDoViewModel.sortByHighPriority.observe(this, {
+        mToDoViewModel.sortByHighPriority.observe(viewLifecycleOwner, {
             listAdapter.setData(it)
         })
     }
@@ -159,7 +161,7 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
     private fun searchThroughDatabase(query: String) {
         var searchQuery = query
         searchQuery = "%$searchQuery%"
-        mToDoViewModel.searchDatabase(searchQuery).observe(this, { list ->
+        mToDoViewModel.searchDatabase(searchQuery).observeOnce(viewLifecycleOwner, { list ->
             list.let {
                 listAdapter.setData(it)
             }

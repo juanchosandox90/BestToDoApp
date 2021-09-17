@@ -14,7 +14,6 @@ import com.sandoval.besttodoapp.data.viewmodel.ToDoViewModel
 import com.sandoval.besttodoapp.databinding.FragmentUpdateBinding
 import com.sandoval.besttodoapp.ui.viewmodel.SharedViewModel
 import com.sandoval.besttodoapp.utils.actionUpdateToList
-import kotlinx.android.synthetic.main.fragment_update.*
 
 class UpdateFragment : Fragment() {
 
@@ -35,6 +34,7 @@ class UpdateFragment : Fragment() {
         _binding = FragmentUpdateBinding.inflate(inflater, container, false)
         binding.args = args
         binding.updateToDoPriority.onItemSelectedListener = mSharedViewModel.listener
+        mSharedViewModel.hideSoftKeyboard(requireActivity())
         navController = findNavController()
         //initViews(view)
         setHasOptionsMenu(true)
@@ -76,9 +76,9 @@ class UpdateFragment : Fragment() {
     }
 
     private fun updateToDoItem() {
-        val mTitle = updateToDoTitle.text.toString()
-        val mPriority = updateToDoPriority.selectedItem.toString()
-        val mDescription = updateToDoDescription.text.toString()
+        val mTitle = binding.updateToDoTitle.text.toString()
+        val mPriority = binding.updateToDoPriority.selectedItem.toString()
+        val mDescription = binding.updateToDoDescription.text.toString()
         //Here we need to validate if this inputs are not null or empty.
         val validation = mSharedViewModel.verifyDataFromUserInput(mTitle, mDescription)
         if (validation) {

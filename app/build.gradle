@@ -1,9 +1,9 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
     id 'kotlin-kapt'
     id("androidx.navigation.safeargs")
+    id 'kotlin-android-extensions'
 }
 
 android {
@@ -35,6 +35,7 @@ android {
 
     buildFeatures {
         dataBinding = true
+        viewBinding = true
     }
 }
 
@@ -63,11 +64,6 @@ dependencies {
     kapt 'androidx.room:room-compiler:2.3.0'
     implementation 'androidx.room:room-ktx:2.3.0'
     androidTestImplementation 'androidx.room:room-testing:2.3.0'
-
-    //Databinding
-    annotationProcessor 'com.android.databinding:compiler:3.2.0-alpha10'
-    kapt 'com.android.databinding:compiler:3.2.0-alpha10'
-    kapt 'androidx.databinding:databinding-common:7.0.2'
 
     //RecyclerView Animator
     implementation 'jp.wasabeef:recyclerview-animators:3.0.0'

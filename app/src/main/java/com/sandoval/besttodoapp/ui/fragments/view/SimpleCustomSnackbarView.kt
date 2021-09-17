@@ -24,6 +24,7 @@ class SimpleCustomSnackbarView @JvmOverloads constructor(
     var imLeft: ImageView
     var layRoot: ConstraintLayout
 
+
     init {
         View.inflate(context, R.layout.view_simple_snackbar, this)
         clipToPadding = false
