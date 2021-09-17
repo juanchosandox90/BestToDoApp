@@ -7,7 +7,6 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.*
 import com.sandoval.besttodoapp.R
 import com.sandoval.besttodoapp.data.viewmodel.ToDoViewModel
@@ -17,7 +16,6 @@ import com.sandoval.besttodoapp.ui.viewmodel.SharedViewModel
 import com.sandoval.besttodoapp.utils.SwipeToDelete
 import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter
 import jp.wasabeef.recyclerview.animators.OvershootInRightAnimator
-import kotlinx.android.synthetic.main.fragment_list.*
 
 class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
@@ -120,19 +118,19 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
     }
 
     private fun sortByLowPriority() {
-        mToDoViewModel.sortByLowPriority.observe(this, Observer {
+        mToDoViewModel.sortByLowPriority.observe(this, {
             listAdapter.setData(it)
         })
     }
 
     private fun sortByMediumPriority() {
-        mToDoViewModel.sortByMediumPriority.observe(this, Observer {
+        mToDoViewModel.sortByMediumPriority.observe(this, {
             listAdapter.setData(it)
         })
     }
 
     private fun sortByHighPriority() {
-        mToDoViewModel.sortByHighPriority.observe(this, Observer {
+        mToDoViewModel.sortByHighPriority.observe(this, {
             listAdapter.setData(it)
         })
     }
