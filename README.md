@@ -39,7 +39,7 @@ Moreover, has been implemented support for [dark theme](https://developer.androi
 -   Improves visibility for users with low vision and those who are sensitive to bright light.
 -   Makes it easier for anyone to use a device in a low-light environment.
 
-| Mode  | Characters list                                                          | Characters favorite                                                          | Character detail                                                          |
+| Mode  | List Fragment                                                        | Update Fragment                                                          | Add Fragment                                                          |
 |-------|--------------------------------------------------------------------------|------------------------------------------------------------------------------|---------------------------------------------------------------------------|
 | Light | <img src="bestdark01.jpg" width="250"> | <img src="bestdark02.jpg" width="250"> | <img src="bestdark03.jpg" width="250"> |
 | Dark  | <img src="bestlight01.jpg" width="250">  | <img src="bestlight02.jpg" width="250">  | <img src="bestlight03.jpg" width="250">  |
