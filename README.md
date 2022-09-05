@@ -109,7 +109,7 @@ Please feel free to post questions, recommendations, ideas, bugs by create [new 
 
 **Juan Camilo Sandoval Devia**
 
-[![Linkedin](https://img.shields.io/badge/-linkedin-grey?logo=linkedin)](https://www.linkedin.com/in/juan-sandoval-a33955a5/)
+[![Linkedin](https://img.shields.io/badge/-linkedin-grey?logo=linkedin)](https://www.linkedin.com/in/juan-camilo-sandoval-devia-a33955a5/)
 
 ## License
 
